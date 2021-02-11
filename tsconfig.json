@@ -6,5 +6,18 @@
 */
 {
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./projects/tambola-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/tambola-lib/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/FamilyApp/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/FamilyApp/tsconfig.spec.json"
+    }
+]
 }

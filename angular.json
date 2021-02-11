@@ -2,5 +2,167 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "TambolaLib": {
+      "projectType": "library",
+      "root": "projects/tambola-lib",
+      "sourceRoot": "projects/tambola-lib/src",
+      "prefix": "rm",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/tambola-lib/tsconfig.lib.json",
+            "project": "projects/tambola-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/tambola-lib/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/tambola-lib/src/test.ts",
+            "tsConfig": "projects/tambola-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/tambola-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/tambola-lib/tsconfig.lib.json",
+              "projects/tambola-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "FamilyApp": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/FamilyApp",
+      "sourceRoot": "projects/FamilyApp/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/FamilyApp",
+            "index": "projects/FamilyApp/src/index.html",
+            "main": "projects/FamilyApp/src/main.ts",
+            "polyfills": "projects/FamilyApp/src/polyfills.ts",
+            "tsConfig": "projects/FamilyApp/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/FamilyApp/src/favicon.ico",
+              "projects/FamilyApp/src/assets"
+            ],
+            "styles": [
+              "projects/FamilyApp/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/FamilyApp/src/environments/environment.ts",
+                  "with": "projects/FamilyApp/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "FamilyApp:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "FamilyApp:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "FamilyApp:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/FamilyApp/src/test.ts",
+            "polyfills": "projects/FamilyApp/src/polyfills.ts",
+            "tsConfig": "projects/FamilyApp/tsconfig.spec.json",
+            "karmaConfig": "projects/FamilyApp/karma.conf.js",
+            "assets": [
+              "projects/FamilyApp/src/favicon.ico",
+              "projects/FamilyApp/src/assets"
+            ],
+            "styles": [
+              "projects/FamilyApp/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/FamilyApp/tsconfig.app.json",
+              "projects/FamilyApp/tsconfig.spec.json",
+              "projects/FamilyApp/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/FamilyApp/e2e/protractor.conf.js",
+            "devServerTarget": "FamilyApp:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "FamilyApp:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "FamilyApp"
 }
