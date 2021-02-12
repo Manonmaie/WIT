@@ -1,0 +1,21 @@
+.boardNumber.selected {
+    background-color: green;
+    color: white;
+}
+
+.boardNumber.current {
+    background-color: red;
+    color: white;
+}
+
+.boardNumber {
+    width: 10%;
+    text-align: center;
+    a{
+        font-size: 20px;
+    }
+}
+
+.boardRow {
+    margin-bottom: 5px;
+}

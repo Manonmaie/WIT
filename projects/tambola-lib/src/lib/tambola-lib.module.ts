@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { TambolaLibComponent } from './tambola-lib.component';
 import { BoardComponent } from './components/board/board.component';
 import { NumbersComponent } from './components/numbers/numbers.component';
@@ -11,6 +12,7 @@ import { WinnersComponent } from './components/winners/winners.component';
 @NgModule({
   declarations: [TambolaLibComponent, BoardComponent, NumbersComponent, GamesComponent, PlayersComponent, WinnersComponent],
   imports: [
+    CommonModule
   ],
   exports: [TambolaLibComponent]
 })

@@ -1,1 +1,12 @@
-<p>board works!</p>
+<!-- <div class="boardRow row col-lg-12" *ngFor="let row of BoardData">
+    <div
+        [ngClass]="bNumber.selected? (bNumber == CurrentNumber? 'boardNumber current': 'boardNumber selected'): 'boardNumber'"
+        *ngFor="let bNumber of row">
+        <a>{{bNumber.value}}</a>
+    </div>
+</div> -->
+<div class="boardRow row" *ngFor="let row of BoardData">
+    <div class="col-lg-1" [ngClass]="bNumber.selected? (bNumber == CurrentNumber? 'boardNumber current': 'boardNumber selected'): 'boardNumber'" *ngFor="let bNumber of row">
+        <a>{{bNumber.value}}</a>
+    </div>
+</div>
